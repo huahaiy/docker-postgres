@@ -1,5 +1,6 @@
 #
 # The latest Postgres on the latest Debian Stable, including PostGIS and adminpack 
+# 
 #
 # Version     0.1
 #
@@ -31,16 +32,28 @@ RUN \
   wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     apt-key add - && \ 
   apt-get update && \ 
-  apt-get install -y postgresql-9.3-postgis-2.1 postgresql-contrib && \
-  apt-get clean
+  apt-get install -y postgresql-9.3-postgis-2.1 postgresql-contrib pgtune && \
+  \
+  \
+  echo "===> install wal-e" && \
+  apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev daemontools python-pip lzop pv && \
+  pip install wal-e && \
+  \
+  \
+  echo "===> clean up" && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  \
+  \
+  echo "===> setup" 
   
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
 ENV PATH /usr/lib/postgresql/9.3/bin:$PATH
 
-ENV PGDATA /var/lib/postgresql/data
+ENV PGDATA /data
 
-VOLUME /var/lib/postgresql/data
+VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql"]
 
 COPY ./docker-entrypoint.sh /
 
