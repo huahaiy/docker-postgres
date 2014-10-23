@@ -32,6 +32,8 @@ RUN \
   wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     apt-key add - && \ 
   apt-get update && \ 
+  apt-get install -y postgresql-common && \
+  sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
   apt-get install -y postgresql-9.3-postgis-2.1 postgresql-contrib pgtune && \
   \
   \
@@ -56,6 +58,7 @@ ENV PGDATA /data
 VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql"]
 
 COPY ./docker-entrypoint.sh /
+COPY ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
