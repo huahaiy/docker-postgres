@@ -6,7 +6,7 @@ gosu postgres psql -q <<-EOF
   ALTER USER postgres WITH PASSWORD '$POSTGRES_PASSWORD';
 EOF
 gosu postgres createdb -O $POSTGRES_USER $POSTGRES_DB
-gosu postgres pg_ctl stop 
 if [ -n "$S3_BACKUP_DIR" ]; then 
-  envdir /etc/wal-e.d/env /usr/local/bin/wal-e backup-push "$PGDATA"
+  gosu postgres envdir /etc/wal-e.d/env /usr/local/bin/wal-e backup-push "$PGDATA"
 fi
+gosu postgres pg_ctl stop 
