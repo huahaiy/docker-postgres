@@ -5,7 +5,7 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
   gosu postgres psql -q <<-EOF
     CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '$POSTGRES_PASSWORD'; 
     ALTER USER postgres WITH PASSWORD '$POSTGRES_PASSWORD';
-  EOF
+EOF
   gosu postgres createdb -O $POSTGRES_USER $POSTGRES_DB
 fi
 if [ -n "$S3_BACKUP_DIR" ]; then 
