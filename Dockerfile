@@ -58,7 +58,6 @@ ENV PGDATA /data
 VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql"]
 
 COPY ./docker-entrypoint.sh /
-COPY ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
