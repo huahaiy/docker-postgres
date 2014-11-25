@@ -55,7 +55,7 @@ ENV PATH /usr/lib/postgresql/9.3/bin:$PATH
 
 ENV PGDATA /data
 
-VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql"]
+VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql" "/dev/log"]
 
 COPY ./docker-entrypoint.sh /
 
