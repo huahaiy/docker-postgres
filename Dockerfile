@@ -1,8 +1,8 @@
 #
-# The latest Postgres on the latest Debian Stable, including PostGIS and adminpack 
+# Postgres 9.3 on the latest Debian Stable, including PostGIS and adminpack 
 # 
 #
-# Version     0.2
+# Version     0.1
 #
 
 FROM huahaiy/debian
@@ -34,11 +34,11 @@ RUN \
   apt-get update && \ 
   apt-get install -y postgresql-common && \
   sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get install -y postgresql-9.4-postgis-2.1 postgresql-contrib pgtune && \
+  apt-get install -y postgresql-9.3-postgis-2.1 postgresql-contrib pgtune && \
   \
   \
   echo "===> install wal-e" && \
-  apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev libffi-dev daemontools python-pip lzop pv && \
+  apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev daemontools python-pip lzop pv && \
   pip install wal-e && \
   \
   \
@@ -51,7 +51,7 @@ RUN \
   
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
-ENV PATH /usr/lib/postgresql/9.4/bin:$PATH
+ENV PATH /usr/lib/postgresql/9.3/bin:$PATH
 
 ENV PGDATA /data
 
