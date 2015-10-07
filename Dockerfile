@@ -2,7 +2,7 @@
 # The latest Postgres on the latest Debian Stable, including PostGIS and adminpack 
 # 
 #
-# Version     0.3
+# Version     0.4
 #
 
 FROM huahaiy/debian
@@ -15,7 +15,7 @@ RUN \
   echo "===> grab gosu for easy step-down from root" && \
   apt-get update && \ 
   wget -O /usr/local/bin/gosu \
-    https://github.com/tianon/gosu/releases/download/1.1/gosu  && \
+    https://github.com/tianon/gosu/releases/download/1.6/gosu  && \
   chmod +x /usr/local/bin/gosu && \
   \
   \
