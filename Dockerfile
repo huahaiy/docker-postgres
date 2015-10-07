@@ -2,7 +2,7 @@
 # The latest Postgres on the latest Debian Stable, including PostGIS and adminpack 
 # 
 #
-# Version     0.2
+# Version     0.3
 #
 
 FROM huahaiy/debian
@@ -27,8 +27,8 @@ ENV LANG en_US.utf8
 
 RUN \
   echo "===> install postgres" && \
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main" | tee \ 
-    /etc/apt/sources.list.d/wheezy-pgdg.list  && \ 
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" | tee \ 
+    /etc/apt/sources.list.d/jessie-pgdg.list  && \ 
   wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     apt-key add - && \ 
   apt-get update && \ 
