@@ -21,9 +21,6 @@ if [ "$1" = 'postgres' ]; then
     sed -ri "s/^#(listen_addresses\s*=\s*)\S+/\1'*'/" "$PGDATA"/postgresql.conf
     { echo; echo 'host all all 0.0.0.0/0 md5'; } >> "$PGDATA"/pg_hba.conf
 
-    pgtune -T Web -i "$PGDATA"/postgresql.conf > "$PGDATA"/local.conf
-    { echo; echo "include = 'local.conf'"; } >> "$PGDATA"/postgresql.conf
-
     if [ -n "$S3_BACKUP_DIR" ]; then 
       prep_backup
       { echo; echo "wal_level = archive"; } >> "$PGDATA"/postgresql.conf

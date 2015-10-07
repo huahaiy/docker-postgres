@@ -34,12 +34,12 @@ RUN \
   apt-get update && \ 
   apt-get install -y postgresql-common && \
   sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get install -y postgresql-9.4-postgis-2.1 postgresql-contrib pgtune && \
+  apt-get install -y postgresql-9.4-postgis-2.1 postgresql-contrib && \
   \
   \
   echo "===> install wal-e" && \
   apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev libffi-dev daemontools python-pip lzop pv && \
-  pip install wal-e && \
+  pip install wal-e &&\
   \
   \
   echo "===> clean up" && \
