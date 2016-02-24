@@ -2,7 +2,7 @@
 # The latest Postgres on the latest Debian Stable, including PostGIS and adminpack 
 # 
 #
-# Version     0.4
+# Version     0.6
 #
 
 FROM huahaiy/debian
@@ -34,12 +34,12 @@ RUN \
   apt-get update && \ 
   apt-get install -y postgresql-common && \
   sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get install -y postgresql-9.4-postgis-2.1 postgresql-contrib && \
-  \
-  \
-  echo "===> install wal-e" && \
-  apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev libffi-dev daemontools python-pip lzop pv && \
-  pip install wal-e &&\
+  apt-get install -y postgresql-9.5-postgis-2.2 postgresql-contrib && \
+  #\
+  #\
+  #echo "===> install wal-e" && \
+  #apt-get install -y libxml2-dev libxslt1-dev python-dev libevent-dev libffi-dev daemontools python-pip lzop pv && \
+  #pip install wal-e &&\
   \
   \
   echo "===> clean up" && \
@@ -51,11 +51,11 @@ RUN \
   
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
-ENV PATH /usr/lib/postgresql/9.4/bin:$PATH
+ENV PATH /usr/lib/postgresql/9.5/bin:$PATH
 
 ENV PGDATA /data
 
-VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql" "/dev/log"]
+VOLUME ["/data", "/var/log/postgresql", "/etc/postgresql", "/dev/log"]
 
 COPY ./docker-entrypoint.sh /
 
