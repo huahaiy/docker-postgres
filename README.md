@@ -7,4 +7,4 @@ Data will be stored under a volume called `/data` in the container, make sure th
 
 When the database is first run, a superuser and a password will be created if `POSTGRES_USER` and `POSTGRES_PASSWORD` environment variables are set, and a database will also be created if `POSTGRES_DB` environment variable is set. 
 
-<!--This image also does continuous archiving to AWS S3 using WAL-e, if the following environment variables are set: `S3_BACKUP_DIR`, `S3_BACKUP_KEY`, and `S3_BACKUP_SECRET`. (Note: to enable logging for Wal-e, link the host volume by specifying `-v /dev/log:/dev/log`) -->
+This image can also do continuous archiving to AWS S3 using WAL-e, if the following environment variables are set: `S3_BACKUP_DIR`, `S3_BACKUP_KEY`, and `S3_BACKUP_SECRET`. (Note: to enable logging for Wal-e, link the host volume by specifying `-v /dev/log:/dev/log`) 
