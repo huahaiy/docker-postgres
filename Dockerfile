@@ -1,8 +1,8 @@
 #
-# Postgres 10 
+# Postgres 9.6 
 # 
 #
-# Version     0.8
+# Version     0.9
 #
 
 FROM huahaiy/debian
@@ -34,7 +34,7 @@ RUN \
   apt-get update && \ 
   apt-get install -y postgresql-common && \
   sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get install -y postgresql-10 && \
+  apt-get install -y postgresql-9.6 && \
   \
   \
   #echo "===> install wal-e" && \
@@ -51,7 +51,7 @@ RUN \
   
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
-ENV PATH /usr/lib/postgresql/10/bin:$PATH
+ENV PATH /usr/lib/postgresql/9.6/bin:$PATH
 
 ENV PGDATA /data
 

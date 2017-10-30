@@ -1,7 +1,7 @@
 docker-postgres
 ===============
 
-Docker image for Postgresql 10
+Docker image for Postgresql 9.6
 
 Data will be stored under a volume called `/data` in the container, make sure that this volume is linked to the host when running the container if you want the data to be persistent, e.g. `-v /whatever/on/host:/data`.
 
