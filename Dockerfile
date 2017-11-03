@@ -20,15 +20,15 @@ RUN \
   \
   \
   echo "make en_US.UTF-8 locale so postgres will be utf-8 enabled by default" && \ 
-  apt-get install -y locales && \ 
+  apt-get install -y gpg locales && \ 
   localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 
 
 ENV LANG en_US.utf8
 
 RUN \
   echo "===> install postgres" && \
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" | tee \ 
-    /etc/apt/sources.list.d/jessie-pgdg.list  && \ 
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee \ 
+    /etc/apt/sources.list.d/stretch-pgdg.list  && \ 
   wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     apt-key add - && \ 
   apt-get update && \ 
