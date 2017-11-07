@@ -7,6 +7,8 @@
 
 FROM huahaiy/debian
 
+ENV LANG en_US.utf8
+
 RUN \
   echo "===> add user and group to make sure their IDs get assigned consistently" && \
   groupadd -r postgres && useradd -r -g postgres postgres && \
@@ -21,11 +23,9 @@ RUN \
   \
   echo "make en_US.UTF-8 locale so postgres will be utf-8 enabled by default" && \ 
   apt-get install -y gpg locales && \ 
-  localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 
-
-ENV LANG en_US.utf8
-
-RUN \
+  localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8  && \
+  \
+  \
   echo "===> install postgres" && \
   echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee \ 
     /etc/apt/sources.list.d/stretch-pgdg.list  && \ 
