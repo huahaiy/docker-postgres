@@ -22,7 +22,7 @@ RUN \
   \
   \
   echo "make en_US.UTF-8 locale so postgres will be utf-8 enabled by default" && \ 
-  apt-get install -y gpg locales && \ 
+  apt-get  -y --no-install-recommends install gpg locales && \ 
   localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8  && \
   \
   \
@@ -32,9 +32,9 @@ RUN \
   wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     apt-key add - && \ 
   apt-get update && \ 
-  apt-get install -y postgresql-common && \
+  apt-get -y --no-install-recommends install postgresql-common && \
   sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get install -y postgresql-9.6 && \
+  apt-get -y --no-install-recommends install postgresql-9.6 && \
   \
   \
   #echo "===> install wal-e" && \
