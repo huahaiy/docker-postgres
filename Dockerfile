@@ -17,7 +17,7 @@ RUN \
   echo "===> grab gosu for easy step-down from root" && \
   apt-get update && \ 
   wget -O /usr/local/bin/gosu \
-    https://github.com/tianon/gosu/releases/download/1.12/gosu  && \
+    https://github.com/tianon/gosu/releases/download/1.1/gosu  && \
   chmod +x /usr/local/bin/gosu && \
   \
   \
