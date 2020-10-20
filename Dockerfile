@@ -1,8 +1,8 @@
 #
-# Postgres 9.6 
+# Postgres 11
 # 
 #
-# Version     0.9
+# Version     0.10
 #
 
 FROM huahaiy/debian
@@ -17,7 +17,7 @@ RUN \
   echo "===> grab gosu for easy step-down from root" && \
   apt-get update && \ 
   wget -O /usr/local/bin/gosu \
-    https://github.com/tianon/gosu/releases/download/1.1/gosu  && \
+    https://github.com/tianon/gosu/releases/download/1.12/gosu  && \
   chmod +x /usr/local/bin/gosu && \
   \
   \
@@ -27,14 +27,15 @@ RUN \
   \
   \
   echo "===> install postgres" && \
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee \ 
-    /etc/apt/sources.list.d/stretch-pgdg.list  && \ 
-  wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-    apt-key add - && \ 
-  apt-get update && \ 
-  apt-get -y --no-install-recommends install postgresql-common && \
-  sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-  apt-get -y --no-install-recommends install postgresql-9.6 && \
+  apt-get -y --no-install-recommends install postgresql && \
+  #echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee \ 
+    #/etc/apt/sources.list.d/stretch-pgdg.list  && \ 
+  #wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+    #apt-key add - && \ 
+  #apt-get update && \ 
+  #apt-get -y --no-install-recommends install postgresql-common && \
+  #sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
+  #apt-get -y --no-install-recommends install postgresql-9.6 && \
   \
   \
   #echo "===> install wal-e" && \
@@ -51,7 +52,7 @@ RUN \
   
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
-ENV PATH /usr/lib/postgresql/9.6/bin:$PATH
+ENV PATH /usr/lib/postgresql/11/bin:$PATH
 
 ENV PGDATA /data
 
